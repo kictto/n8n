@@ -1,5 +1,5 @@
-import { Config, Env, Nested } from '@n8n/config';
-import { z } from 'zod';
+import {Config, Env, Nested} from '@n8n/config';
+import {z} from 'zod';
 
 const protocolSchema = z.enum(['http', 'https']);
 
@@ -46,6 +46,9 @@ export class ObjectStoreConfig {
 
 	@Env('N8N_EXTERNAL_STORAGE_S3_PROTOCOL', protocolSchema)
 	protocol: Protocol = 'https';
+
+	@Env('N8N_EXTERNAL_STORAGE_S3_FORCE_PATH_STYLE')
+	forcePathStyle: boolean = false;
 
 	@Nested
 	bucket: ObjectStoreBucketConfig = {} as ObjectStoreBucketConfig;

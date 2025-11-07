@@ -50,13 +50,13 @@ export class ObjectStoreService {
 
 	/** This generates the config for the S3Client to make it work in all various auth configurations */
 	getClientConfig() {
-		const { host, bucket, protocol, credentials } = this.s3Config;
+		const { host, bucket, protocol, credentials, forcePathStyle } = this.s3Config;
 		const clientConfig: S3ClientConfig = {};
 		const endpoint = host ? `${protocol}://${host}` : undefined;
 		if (endpoint) {
 			clientConfig.endpoint = endpoint;
-			clientConfig.forcePathStyle = true; // Needed for non-AWS S3 compatible services
 		}
+		clientConfig.forcePathStyle = forcePathStyle; // Needed for non-AWS S3 compatible services
 		if (bucket.region.length) {
 			clientConfig.region = bucket.region;
 		}
