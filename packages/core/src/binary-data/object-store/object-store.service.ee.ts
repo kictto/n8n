@@ -55,8 +55,10 @@ export class ObjectStoreService {
 		const endpoint = host ? `${protocol}://${host}` : undefined;
 		if (endpoint) {
 			clientConfig.endpoint = endpoint;
+			clientConfig.forcePathStyle = forcePathStyle ?? true;
+		}else{
+			clientConfig.forcePathStyle = forcePathStyle ?? false;
 		}
-		clientConfig.forcePathStyle = forcePathStyle;
 		if (bucket.region.length) {
 			clientConfig.region = bucket.region;
 		}

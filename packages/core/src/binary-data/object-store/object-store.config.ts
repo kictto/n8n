@@ -48,7 +48,7 @@ export class ObjectStoreConfig {
 	protocol: Protocol = 'https';
 
 	@Env('N8N_EXTERNAL_STORAGE_S3_FORCE_PATH_STYLE')
-	forcePathStyle: boolean = false;
+	forcePathStyle?: boolean;
 
 	@Nested
 	bucket: ObjectStoreBucketConfig = {} as ObjectStoreBucketConfig;
