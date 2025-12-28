@@ -151,7 +151,9 @@ export = {
 					publicApi: true,
 				});
 
-				return res.json(version);
+				const { autosaved, ...versionWithoutInternalFields } = version;
+
+				return res.json(versionWithoutInternalFields);
 			} catch (error) {
 				return res.status(404).json({ message: 'Version not found' });
 			}
@@ -309,6 +311,7 @@ export = {
 					{
 						forceSave: true, // Skip version conflict check for public API
 						publicApi: true,
+						publishIfActive: true,
 					},
 				);
 
